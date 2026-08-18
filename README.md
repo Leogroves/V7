@@ -1,47 +1,20 @@
-# USA Attractions v7
+# Mobile packaging
 
-Version 7 is the launch-readiness build.
+This project includes Capacitor configuration so it can be wrapped for iPhone and Android.
 
-## Added in v7
-- Traveler photo uploads using Supabase Storage
-- Traveler photo gallery on attraction details
-- Collaborative-trip database model
-- Share/collaboration control
-- Native local-notification scheduling through Capacitor
-- Offline attraction cache fallback
-- Basic service worker + web app manifest
-- Offline status mode
-- Public shared-trip route scaffold
-- Continued iPhone/Android Capacitor support
-- All v6 features retained
+Recommended production flow:
 
-## What is fully wired
-With Supabase configured:
-- accounts
-- favorites / visited / bucket list sync
-- multiple trips and stops
-- reviews
-- photo upload metadata
-- Storage upload code (requires the `attraction-photos` bucket)
-- trip share-token creation
-- reminder records
+1. Build/export the web app.
+2. Run `npm run cap:sync`.
+3. Add native platforms with:
+   - `npx cap add ios`
+   - `npx cap add android`
+4. Open the native projects:
+   - `npm run cap:ios`
+   - `npm run cap:android`
 
-With Capacitor installed on a device:
-- local notification permission and scheduling code
+Before store submission, replace placeholder app identity/assets with production icons,
+splash screens, privacy descriptions, signing credentials and store metadata.
 
-## Production setup still required
-1. Create the `attraction-photos` Supabase Storage bucket and its storage policies.
-2. Configure native iOS/Android signing, icons, splash screens and privacy strings.
-3. The public shared-trip page needs a server-side/read-only data fetch before exposing trip contents.
-4. Email collaborator invitations need a trusted backend/email provider.
-5. True remote push notifications require APNs/FCM or a push provider.
-6. Review/photo moderation should be added before public launch.
-
-## Run
-Copy `.env.example` to `.env.local`, configure desired services, then:
-
-    npm install
-    npm run dev
-
-## Mobile
-See `mobile/README.md` and `capacitor.config.ts`.
+Push notifications are not fully enabled yet. The database reminder model is included so
+a notification service can deliver scheduled reminders later.

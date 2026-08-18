@@ -1,0 +1,9 @@
+{
+  "name": "USA Attractions",
+  "short_name": "USA Attractions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f3f6f2",
+  "theme_color": "#244f30",
+  "description": "Explore attractions across the United States"
+}
